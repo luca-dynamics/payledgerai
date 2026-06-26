@@ -1,0 +1,14 @@
+{
+  "name": "payledgerai",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build && python3 -m http.server 5173 --directory dist",
+    "build": "tsc -p tsconfig.app.json && cp index.html dist/index.html && mkdir -p dist/src && cp src/styles.css dist/src/styles.css",
+    "preview": "python3 -m http.server 4173 --directory dist"
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  }
+}
