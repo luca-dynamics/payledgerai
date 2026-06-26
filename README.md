@@ -55,6 +55,20 @@ All data is mocked for demo purposes, including:
 
 There is no real payment processing, real banking connection, transaction verification, credit bureau integration, or loan approval flow.
 
+
+## Demo walkthrough
+
+Use this 3-minute path to show the prototype without changing routes or static-hosting behavior:
+
+1. **Landing page** — introduce PayLedger AI as AI business memory for campus and informal merchants, then open the app dashboard.
+2. **Dashboard** — highlight Amaka’s Campus Kitchen, the summary cards, recent mock transactions, and the merchant coaching insight.
+3. **Smart Ledger** — review the ledger view to show how daily Cash, Transfer, POS, and QR activity becomes organized business records.
+4. **Debt Book** — show how customer debts and follow-up notes are tracked for informal credit given by the merchant.
+5. **Fraud Shield** — walk through the suspicious-payment and dispute-risk reminders as guidance only, not payment verification.
+6. **Credit Readiness Report** — finish with the mock readiness score and explain how cleaner records could support future credit conversations.
+
+**Mock-data and integration note:** All data in this prototype is mock data. PayLedger AI does not process payments, verify transfers, approve loans, connect to any bank API, or connect to any OPay API.
+
 ## Future modules
 
 - Smart Ledger.
