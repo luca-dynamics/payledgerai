@@ -1,24 +1,14 @@
 {
-  "name": "payledger-ai",
-  "private": true,
+  "name": "payledgerai",
   "version": "0.1.0",
+  "private": true,
   "type": "module",
-  "description": "PayLedger AI - AI business memory for campus and informal commerce (OPay Scholars National Innovation Challenge prototype)",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2"
+    "dev": "npm run build && python3 -m http.server 5173 --directory dist",
+    "build": "tsc -p tsconfig.app.json && cp index.html dist/index.html && mkdir -p dist/src && cp src/styles.css dist/src/styles.css",
+    "preview": "python3 -m http.server 4173 --directory dist"
   },
   "devDependencies": {
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.3"
+    "typescript": "latest"
   }
 }

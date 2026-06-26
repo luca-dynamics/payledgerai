@@ -1,145 +1,80 @@
 # PayLedger AI
 
-**AI business memory for campus and informal commerce.**
-Merchant intelligence for cash, transfer, POS, and QR transactions.
-
-> **Prototype only. PayLedger AI does not process or verify real payments.**
-
-PayLedger AI is a mobile-first prototype built for the **OPay Scholars National
-Innovation Challenge**, in the partnership direction involving **OPay**,
-**Google / Gemini**, and **3MTT**.
-
----
+PayLedger AI is an AI-powered merchant intelligence system for Nigerian campus vendors, student entrepreneurs, POS agents, and informal traders. It helps merchants convert daily cash, transfer, POS, and QR transactions into trusted business records, fraud-risk alerts, debt tracking, inventory insights, and credit-readiness reports.
 
 ## Product concept
 
-Nigerian campus vendors, student entrepreneurs, POS agents, and informal traders
-receive money every day — across cash, transfer, POS, and QR — but the **record of
-that money disappears** the moment the payment lands. No trusted history means disputes,
-forgotten debts, and no path to credit.
+PayLedger AI is **AI business memory for campus and informal commerce**. It gives merchants a clean post-payment workspace where daily sales, customer debts, stock alerts, dispute notes, risk reminders, and credit-readiness signals are organized in one mobile-first dashboard.
 
-PayLedger AI is the **business memory that starts working _after_ the payment**. It
-turns daily transactions into trusted business records, fraud-risk alerts, debt
-tracking, inventory insights, and a credit-readiness report.
-
-**This is not an expense tracker.** It is a merchant trust, business memory,
-fraud-awareness, and credit-readiness system for informal commerce.
-
----
+**Prototype disclaimer:** Prototype only. PayLedger AI does not process or verify real payments.
 
 ## Target users
 
-- Campus food vendors (e.g. _Amaka's Campus Kitchen_, the mock merchant in this demo)
-- Student entrepreneurs
-- POS agents
-- Informal traders and small merchants
+- Nigerian campus food vendors and student entrepreneurs.
+- POS agents and informal traders who receive cash, transfer, POS, and QR payments.
+- Small merchants who need trusted records before they can access better support, credit, or business opportunities.
 
-Starts with campus vendors and student entrepreneurs, then scales to the wider informal
-merchant economy.
+## Core modules in PR 1
 
----
-
-## Core modules
-
-| Module | What it does |
-| --- | --- |
-| **Dashboard** | Today's sales, profit, debt, stock alerts, credit readiness, and risk alerts at a glance, plus an AI insight card. |
-| **Smart Ledger** | Records every cash, transfer, POS, and QR payment as a trusted business record, filterable by method. |
-| **Debt Book** | Tracks who owes the merchant, since when, and follow-up status with simple risk levels. |
-| **Fraud Shield** | A suspicious-payment log and a fraud-awareness checklist — guidance, not bank verification. |
-| **Credit Readiness Report** | A 0–100 readiness score explained by clear factors, plus an inventory tracker. |
-
-Navigation is a mobile bottom bar: **Dashboard · Ledger · Debt · Fraud · Report**.
-
----
+- Landing/problem page explaining the merchant trust problem.
+- Merchant dashboard for **Amaka’s Campus Kitchen**, a campus food vendor.
+- Summary cards for sales, profit, debt, inventory, credit readiness, and fraud-risk alerts.
+- Gemini-style AI insight card for merchant coaching.
+- Recent transaction list using mock Cash, Transfer, POS, and QR payment methods.
+- Bottom navigation: Dashboard, Ledger, Debt, Fraud, and Report.
 
 ## Why it is not just an expense tracker
 
-An expense tracker tells you where your money went. PayLedger AI does something
-different for informal merchants:
+PayLedger AI is positioned as merchant intelligence, not personal expense tracking. It focuses on what happens **after payments** for informal businesses:
 
-- **Business memory, not bookkeeping** — it captures _who_ paid, _how_ (cash / transfer /
-  POS / QR), and _what is still owed_, building a trusted history.
-- **Fraud-risk guidance** — it flags suspicious payment patterns and coaches safe habits
-  to reduce disputes (it does **not** detect fraud from bank data).
-- **Credit readiness** — clean records produce a credit-readiness report, helping
-  merchants become more bankable over time (it is **not** a loan approval).
-- **AI merchant coaching** — a Gemini-style assistant turns the day's activity into plain
-  next actions ("restock drinks before evening rush, follow up on ₦13,500 owed").
+- Building trusted business memory from merchant transactions.
+- Helping reduce payment disputes through fraud-risk guidance, not bank verification.
+- Tracking customer debt and suspicious payment notes.
+- Turning clean records into a credit-readiness report, not loan approval.
+- Surfacing inventory and sales insights that help merchants operate better.
 
----
+## Challenge alignment: OPay, Google/Gemini, and 3MTT
 
-## How it fits the challenge
-
-- **OPay fit** — supports merchants and digital-payment users _after_ transactions
-  happen, complementing the payment rails rather than replacing them.
-- **Google / Gemini fit** — AI-powered business insight and merchant coaching.
-- **3MTT fit** — demonstrates software development, AI/ML, data analysis, UI/UX design,
-  and cybersecurity awareness.
-- **Student fit** — starts with campus vendors and student entrepreneurs, then scales to
-  informal merchants nationwide.
-
-**Focus areas:** fintech & digital payments, and digital tools for SMEs and the informal
-sector — supported by AI/automation, fraud awareness, data/business intelligence, and
-student entrepreneurship.
-
----
+- **OPay fit:** supports merchants and digital payment users after transactions happen by helping them organize records and resolve disputes more clearly.
+- **Google/Gemini fit:** demonstrates AI-powered business insight and merchant coaching using a Gemini-style assistant experience.
+- **3MTT fit:** showcases software development, UI/UX design, AI/ML product thinking, data analysis, cybersecurity awareness, and product management.
+- **Student fit:** starts with campus vendors and student entrepreneurs, then scales to wider informal merchants.
 
 ## What is mocked in this prototype
 
-Everything in this build is demonstration data:
+All data is mocked for demo purposes, including:
 
-- The merchant (**Amaka's Campus Kitchen**), sales, profit, debt, and readiness figures.
-- All transactions, debtors, fraud flags, and inventory items (see
-  [`src/data/mockData.ts`](src/data/mockData.ts)).
-- The "AI Insight" is a written, representative example of Gemini-style coaching — no
-  live model call is made.
+- Today’s sales: ₦82,500.
+- Today’s profit: ₦21,800.
+- Outstanding debt: ₦13,500.
+- Credit readiness score: 76/100.
+- Risk alerts: 2.
+- Stock alerts: 4.
+- Recent Cash, Transfer, POS, and QR transactions.
+- AI insights and readiness scoring logic.
 
-No backend, database, payment gateway, or bank connection is involved.
-
----
-
-## Safety disclaimer
-
-> **Prototype only. PayLedger AI does not process or verify real payments.**
-
-- It does **not** process payments or move money.
-- It does **not** verify bank or transfer transactions.
-- It does **not** approve loans or perform real fraud detection from bank data.
-- Fraud features are **fraud-risk guidance**, and the score is a **credit-readiness
-  report** — not bank verification or loan approval.
-
----
+There is no real payment processing, real banking connection, transaction verification, credit bureau integration, or loan approval flow.
 
 ## Future modules
 
-- **Smart Ledger** (expanded auto-categorization)
-- **Fraud Shield** (richer suspicious-pattern detection)
-- **Debt Book** (automated reminders)
-- **Inventory Tracker** (restock forecasting)
-- **Credit Readiness Report** (lender-shareable summary)
-- **Gemini-powered Merchant Coach** (live AI insights)
-- **QR receipt mode** (instant digital receipts)
-- **Suspicious payment dispute log** (structured dispute records)
+- Smart Ledger.
+- Fraud Shield.
+- Debt Book.
+- Inventory Tracker.
+- Credit Readiness Report.
+- Gemini-powered Merchant Coach.
+- QR receipt mode.
+- Suspicious payment dispute log.
 
----
-
-## Run locally
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the printed local URL (default `http://localhost:5173`). Best viewed in a
-phone-width viewport — the app is mobile-first.
+Run a production build:
 
 ```bash
-npm run build    # type-check + production build
-npm run preview  # preview the production build
+npm run build
 ```
-
-### Tech
-
-React + TypeScript + Vite. Clean, typed, componentized. State is local and uses mock
-data only.
