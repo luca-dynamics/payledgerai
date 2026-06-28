@@ -6,10 +6,12 @@ interface DisclaimerProps {
 
 export default function Disclaimer({ variant = 'inline' }: DisclaimerProps) {
   if (variant === 'pill') {
+    // Compact header badge — the full disclaimer lives in the footer and on
+    // every app screen. The full text is kept accessible via title/aria-label.
     return (
-      <span className="disclaimer-pill">
+      <span className="disclaimer-pill" title={DISCLAIMER} aria-label={DISCLAIMER}>
         <span className="dot" aria-hidden="true" />
-        {DISCLAIMER}
+        Prototype
       </span>
     )
   }
