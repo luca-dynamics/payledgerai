@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
-import TopBar from '../components/TopBar'
+import AppBanner from '../components/AppBanner'
 import TransactionItem from '../components/TransactionItem'
 import { transactions } from '../data/mockData'
 import type { PaymentMethod } from '../types'
@@ -29,11 +29,11 @@ export default function Ledger() {
 
   return (
     <div className="page">
-      <TopBar title="Smart Ledger" subtitle="Business memory" />
-      <p className="lead">
-        Every cash, transfer, POS and QR payment, recorded after it lands — your trusted
-        sales history.
-      </p>
+      <AppBanner
+        eyebrow="Smart Ledger"
+        title="Business memory"
+        subtitle="Every cash, transfer, POS and QR payment, recorded after it lands — your trusted sales history."
+      />
 
       <Disclaimer />
 

@@ -1,6 +1,6 @@
 import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
-import TopBar from '../components/TopBar'
+import AppBanner from '../components/AppBanner'
 import { debtors } from '../data/mockData'
 import { formatNaira } from '../utils/format'
 
@@ -15,11 +15,11 @@ export default function Debt() {
 
   return (
     <div className="page">
-      <TopBar title="Debt Book" subtitle="Who owes you" />
-      <p className="lead">
-        Track customers buying on credit and follow up before small debts become bad
-        debts.
-      </p>
+      <AppBanner
+        eyebrow="Debt Book"
+        title="Who owes you"
+        subtitle="Track customers buying on credit and follow up before small debts become bad debts."
+      />
 
       <Disclaimer />
 
