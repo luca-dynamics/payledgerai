@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom'
+import { useTabNav, type Tab } from './tabNav'
 
 interface NavItem {
-  to: string
+  tab: Tab
   label: string
   icon: JSX.Element
 }
@@ -63,25 +63,28 @@ function iconFor(name: string): JSX.Element {
 }
 
 const items: NavItem[] = [
-  { to: '/app', label: 'Dashboard', icon: iconFor('dashboard') },
-  { to: '/ledger', label: 'Ledger', icon: iconFor('ledger') },
-  { to: '/debt', label: 'Debt', icon: iconFor('debt') },
-  { to: '/fraud', label: 'Fraud', icon: iconFor('fraud') },
-  { to: '/report', label: 'Report', icon: iconFor('report') },
+  { tab: 'dashboard', label: 'Dashboard', icon: iconFor('dashboard') },
+  { tab: 'ledger', label: 'Ledger', icon: iconFor('ledger') },
+  { tab: 'debt', label: 'Debt', icon: iconFor('debt') },
+  { tab: 'fraud', label: 'Fraud', icon: iconFor('fraud') },
+  { tab: 'report', label: 'Report', icon: iconFor('report') },
 ]
 
 export default function BottomNav() {
+  const { active, go } = useTabNav()
   return (
     <nav className="bottom-nav" aria-label="Primary">
       {items.map((item) => (
-        <NavLink
-          key={item.to}
-          to={item.to}
-          className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}
+        <button
+          key={item.tab}
+          type="button"
+          onClick={() => go(item.tab)}
+          className={'nav-item' + (active === item.tab ? ' active' : '')}
+          aria-current={active === item.tab ? 'page' : undefined}
         >
           <span className="nav-icon">{item.icon}</span>
           <span className="nav-label">{item.label}</span>
-        </NavLink>
+        </button>
       ))}
     </nav>
   )

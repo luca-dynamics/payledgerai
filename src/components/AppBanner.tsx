@@ -1,4 +1,5 @@
 import { merchant } from '../data/mockData'
+import ThemeToggle from './ThemeToggle'
 
 interface AppBannerProps {
   eyebrow: string
@@ -54,16 +55,19 @@ export default function AppBanner({
           {subtitle ? <p className="banner-subtitle">{subtitle}</p> : null}
         </div>
 
-        {highlight ? (
-          <div className="banner-highlight">
-            <span className="bh-value">{highlight.value}</span>
-            <span className="bh-label">{highlight.label}</span>
-          </div>
-        ) : showAvatar ? (
-          <div className="banner-avatar" aria-hidden="true">
-            {merchant.initials}
-          </div>
-        ) : null}
+        <div className="banner-actions">
+          <ThemeToggle />
+          {highlight ? (
+            <div className="banner-highlight">
+              <span className="bh-value">{highlight.value}</span>
+              <span className="bh-label">{highlight.label}</span>
+            </div>
+          ) : showAvatar ? (
+            <div className="banner-avatar" aria-hidden="true">
+              {merchant.initials}
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <span className="banner-badge">

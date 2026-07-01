@@ -1,7 +1,7 @@
 import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
 import AppBanner from '../components/AppBanner'
-import { debtors } from '../data/mockData'
+import { useApp } from '../store'
 import { formatNaira, formatNairaShort } from '../utils/format'
 
 const riskLabel: Record<string, string> = {
@@ -11,7 +11,8 @@ const riskLabel: Record<string, string> = {
 }
 
 export default function Debt() {
-  const total = debtors.reduce((sum, d) => sum + d.amount, 0)
+  const { debtors, outstandingDebt, markDebtPaid, toast } = useApp()
+  const total = outstandingDebt
 
   return (
     <div className="page">
@@ -31,6 +32,14 @@ export default function Debt() {
       </div>
 
       <Section title="Customers owing">
+        {debtors.length === 0 ? (
+          <div className="empty-state">
+            <span className="empty-check" aria-hidden="true">
+              ✓
+            </span>
+            <p>All debts cleared. Nothing outstanding right now.</p>
+          </div>
+        ) : null}
         <ul className="debtor-list">
           {debtors.map((d) => (
             <li key={d.id} className={'debtor risk-' + d.risk}>
@@ -48,10 +57,21 @@ export default function Debt() {
                 <span className="debtor-contact">{d.lastContact}</span>
               </div>
               <div className="debtor-actions">
-                <button type="button" className="mini-btn">
+                <button
+                  type="button"
+                  className="mini-btn"
+                  onClick={() => toast(`Payment reminder sent to ${d.name}`)}
+                >
                   Send reminder
                 </button>
-                <button type="button" className="mini-btn ghost">
+                <button
+                  type="button"
+                  className="mini-btn ghost"
+                  onClick={() => {
+                    markDebtPaid(d.id)
+                    toast(`${d.name} marked as paid`)
+                  }}
+                >
                   Mark paid
                 </button>
               </div>

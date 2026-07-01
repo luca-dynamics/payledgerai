@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom'
+import { useApp, type SheetName } from '../store'
+import { useTabNav, type Tab } from './tabNav'
 
 interface Action {
   label: string
-  to?: string
+  tab?: Tab
+  sheet?: SheetName
   icon: JSX.Element
 }
 
@@ -24,6 +26,7 @@ const icon = (paths: JSX.Element) => (
 const actions: Action[] = [
   {
     label: 'Record sale',
+    sheet: 'record-sale',
     icon: icon(
       <>
         <circle cx="12" cy="12" r="9" />
@@ -33,7 +36,7 @@ const actions: Action[] = [
   },
   {
     label: 'New debt',
-    to: '/debt',
+    tab: 'debt',
     icon: icon(
       <>
         <circle cx="9" cy="8" r="3.2" />
@@ -44,6 +47,7 @@ const actions: Action[] = [
   },
   {
     label: 'Scan QR',
+    sheet: 'scan-qr',
     icon: icon(
       <>
         <rect x="4" y="4" width="7" height="7" rx="1.4" />
@@ -55,7 +59,7 @@ const actions: Action[] = [
   },
   {
     label: 'View report',
-    to: '/report',
+    tab: 'report',
     icon: icon(
       <>
         <path d="M4 19V5M4 19h16" />
@@ -67,21 +71,27 @@ const actions: Action[] = [
 
 // Real-product quick-action row under the dashboard banner.
 export default function QuickActions() {
+  const { go } = useTabNav()
+  const { openSheet } = useApp()
+
+  const handle = (a: Action) => {
+    if (a.sheet) openSheet(a.sheet)
+    else if (a.tab) go(a.tab)
+  }
+
   return (
     <nav className="quick-actions" aria-label="Quick actions">
-      {actions.map((a) =>
-        a.to ? (
-          <Link key={a.label} to={a.to} className="quick-action">
-            <span className="qa-icon">{a.icon}</span>
-            <span className="qa-label">{a.label}</span>
-          </Link>
-        ) : (
-          <button key={a.label} type="button" className="quick-action">
-            <span className="qa-icon">{a.icon}</span>
-            <span className="qa-label">{a.label}</span>
-          </button>
-        ),
-      )}
+      {actions.map((a) => (
+        <button
+          key={a.label}
+          type="button"
+          className="quick-action"
+          onClick={() => handle(a)}
+        >
+          <span className="qa-icon">{a.icon}</span>
+          <span className="qa-label">{a.label}</span>
+        </button>
+      ))}
     </nav>
   )
 }
