@@ -1,6 +1,6 @@
 import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
-import TopBar from '../components/TopBar'
+import AppBanner from '../components/AppBanner'
 import { readinessFactors, stats, stockItems } from '../data/mockData'
 
 const stockLabel: Record<string, string> = {
@@ -16,11 +16,12 @@ export default function Report() {
 
   return (
     <div className="page">
-      <TopBar title="Credit Readiness" subtitle="Report, not approval" />
-      <p className="lead">
-        A credit-readiness report built from clean business records — not a loan approval
-        or bank decision.
-      </p>
+      <AppBanner
+        eyebrow="Credit Readiness"
+        title="Report, not approval"
+        subtitle="A credit-readiness report built from clean business records — not a loan approval or bank decision."
+        highlight={{ label: 'Readiness', value: `${stats.creditReadiness}/100` }}
+      />
 
       <Disclaimer />
 

@@ -130,8 +130,13 @@ ul {
 }
 
 .page {
-  padding: 18px 16px 8px;
+  padding: 14px 15px 8px;
   animation: fade 0.25s ease;
+}
+
+/* First banner sits flush under the status area with a touch of breathing room */
+.page > .banner:first-child {
+  margin-top: 2px;
 }
 
 @keyframes fade {
@@ -192,6 +197,133 @@ ul {
   font-size: 14px;
   line-height: 1.5;
   color: var(--ink-soft);
+}
+
+/* ---------- Premium in-app banner ---------- */
+.banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(150deg, #0f5132 0%, #0b3d2e 55%, #082a20 100%);
+  color: #fff;
+  box-shadow: 0 16px 34px rgba(11, 61, 46, 0.28);
+  isolation: isolate;
+}
+
+.banner-hero {
+  padding: 20px 18px 16px;
+}
+
+.banner-slim {
+  padding: 17px 18px 14px;
+}
+
+.banner-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.9;
+}
+
+.banner-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.banner-eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green-100);
+  letter-spacing: 0.01em;
+}
+
+.banner-title {
+  margin: 4px 0 0;
+  font-size: 22px;
+  font-weight: 780;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.banner-slim .banner-title {
+  font-size: 19px;
+}
+
+.banner-subtitle {
+  margin: 7px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 44ch;
+}
+
+.banner-highlight {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+  text-align: center;
+}
+
+.bh-value {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.bh-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.banner-avatar {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.banner-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
 }
 
 /* ---------- Disclaimer ---------- */

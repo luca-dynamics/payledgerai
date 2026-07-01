@@ -1,8 +1,8 @@
 import AIInsightCard from '../components/AIInsightCard'
+import AppBanner from '../components/AppBanner'
 import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
 import StatCard from '../components/StatCard'
-import TopBar from '../components/TopBar'
 import TransactionItem from '../components/TransactionItem'
 import {
   aiInsight,
@@ -41,13 +41,13 @@ const innovationFit = [
 export default function Dashboard() {
   return (
     <div className="page">
-      <TopBar title="Good afternoon" subtitle={merchant.businessName} />
-
-      <p className="business-line">
-        {merchant.businessType} · {merchant.targetUserType}
-      </p>
-
-      <Disclaimer />
+      <AppBanner
+        variant="hero"
+        eyebrow="Good afternoon"
+        title={merchant.businessName}
+        subtitle={`${merchant.businessType} · ${merchant.targetUserType}`}
+        highlight={{ label: 'Credit readiness', value: `${stats.creditReadiness}/100` }}
+      />
 
       <Section title="Today at a glance">
         <div className="stat-grid">

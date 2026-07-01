@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Disclaimer from '../components/Disclaimer'
 import MethodTag from '../components/MethodTag'
 import Section from '../components/Section'
-import TopBar from '../components/TopBar'
+import AppBanner from '../components/AppBanner'
 import { fraudChecklist, fraudFlags } from '../data/mockData'
 
 const levelLabel: Record<string, string> = {
@@ -23,11 +23,11 @@ export default function Fraud() {
 
   return (
     <div className="page">
-      <TopBar title="Fraud Shield" subtitle="Fraud-risk guidance" />
-      <p className="lead">
-        Fraud-risk guidance, not bank verification. Spot suspicious payments early and
-        avoid disputes.
-      </p>
+      <AppBanner
+        eyebrow="Fraud Shield"
+        title="Fraud-risk guidance"
+        subtitle="Fraud-risk guidance, not bank verification. Spot suspicious payments early and avoid disputes."
+      />
 
       <Disclaimer />
 
