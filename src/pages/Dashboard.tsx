@@ -1,44 +1,17 @@
+import { Link } from 'react-router-dom'
 import AIInsightCard from '../components/AIInsightCard'
 import AppBanner from '../components/AppBanner'
 import Disclaimer from '../components/Disclaimer'
+import QuickActions from '../components/QuickActions'
 import Section from '../components/Section'
 import StatCard from '../components/StatCard'
 import TransactionItem from '../components/TransactionItem'
-import {
-  aiInsight,
-  merchant,
-  stats,
-  transactions,
-} from '../data/mockData'
+import { aiInsight, merchant, stats, transactions } from '../data/mockData'
 import { formatNaira } from '../utils/format'
 
-const whyItMatters = [
-  'Many student entrepreneurs, campus vendors, POS agents and informal traders receive payments daily but lack trusted records.',
-  'PayLedger AI helps them stay organized after the payment lands.',
-  'It helps reduce payment disputes through fraud-risk guidance.',
-  'It helps merchants become more credit-ready through clean business records.',
-]
-
-const innovationFit = [
-  {
-    tag: 'OPay fit',
-    text: 'Supports merchants and digital payment users after transactions happen.',
-  },
-  {
-    tag: 'Google / Gemini fit',
-    text: 'AI-powered business insight and merchant coaching.',
-  },
-  {
-    tag: '3MTT fit',
-    text: 'Software development, AI, data analysis, UI/UX and cybersecurity awareness.',
-  },
-  {
-    tag: 'Student fit',
-    text: 'Starts with campus vendors and student entrepreneurs, then scales to informal merchants.',
-  },
-]
-
 export default function Dashboard() {
+  const recent = transactions.slice(0, 4)
+
   return (
     <div className="page">
       <AppBanner
@@ -48,6 +21,8 @@ export default function Dashboard() {
         subtitle={`${merchant.businessType} · ${merchant.targetUserType}`}
         highlight={{ label: 'Credit readiness', value: `${stats.creditReadiness}/100` }}
       />
+
+      <QuickActions />
 
       <Section title="Today at a glance">
         <div className="stat-grid">
@@ -95,36 +70,17 @@ export default function Dashboard() {
       <Section
         title="Recent transactions"
         subtitle="Cash · Transfer · POS · QR"
+        action={
+          <Link to="/ledger" className="link-action">
+            See all →
+          </Link>
+        }
       >
         <ul className="txn-list">
-          {transactions.map((txn) => (
+          {recent.map((txn) => (
             <TransactionItem key={txn.id} txn={txn} />
           ))}
         </ul>
-      </Section>
-
-      <Section title="Why this matters">
-        <ul className="why-list">
-          {whyItMatters.map((point, i) => (
-            <li key={i} className="why-item">
-              <span className="why-check" aria-hidden="true">
-                ✓
-              </span>
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section title="Innovation fit">
-        <div className="fit-grid">
-          {innovationFit.map((f) => (
-            <div key={f.tag} className="fit-card">
-              <span className="fit-tag">{f.tag}</span>
-              <p>{f.text}</p>
-            </div>
-          ))}
-        </div>
       </Section>
 
       <Disclaimer />
