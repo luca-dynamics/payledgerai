@@ -2111,12 +2111,13 @@ ul {
 
   .device-frame {
     position: relative;
-    height: min(880px, calc(100vh - 44px));
-    aspect-ratio: 9 / 19.5;
-    width: auto;
+    width: 436px;
+    height: 945px;
     min-height: 0;
-    padding: 11px;
-    border-radius: 46px;
+    transform: scale(var(--dev-scale, 1));
+    transform-origin: center center;
+    padding: 13px;
+    border-radius: 56px;
     background: #0b0f0e;
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.06),
@@ -2145,7 +2146,7 @@ ul {
     min-height: 0;
     max-width: none;
     margin: 0;
-    border-radius: 36px;
+    border-radius: 40px;
     overflow: hidden;
   }
 
