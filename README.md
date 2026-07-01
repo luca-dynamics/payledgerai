@@ -5,6 +5,8 @@ Merchant intelligence for cash, transfer, POS, and QR transactions.
 
 > **Prototype only. PayLedger AI does not process or verify real payments.**
 
+**▶ Live demo:** https://payledgerai.vercel.app/
+
 PayLedger AI is a mobile-first prototype built for the **OPay Scholars National
 Innovation Challenge**, in the partnership direction involving **OPay**,
 **Google / Gemini**, and **3MTT**.
