@@ -9,6 +9,25 @@ PayLedger AI is a mobile-first prototype built for the **OPay Scholars National
 Innovation Challenge**, in the partnership direction involving **OPay**,
 **Google / Gemini**, and **3MTT**.
 
+> **One-line pitch:** PayLedger AI turns a merchant's daily cash, transfer, POS
+> and QR payments into trusted records, fraud-risk guidance, debt tracking and a
+> credit-readiness report — **business memory for informal commerce, not an
+> expense tracker.**
+
+### ▶ For judges — quick start
+
+```bash
+npm install && npm run dev
+```
+
+Open the printed URL (default `http://localhost:5173`) in a **phone-width
+window**. Then follow the **[3-minute demo script](DEMO.md)** — it walks the
+landing page → dashboard → Ledger → Debt → Fraud → Report → challenge fit in
+under three minutes.
+
+The product story is readable in ~10 seconds on the dashboard: sales, profit,
+debt, risk, an AI recommendation, and mixed payment methods, all on one screen.
+
 ---
 
 ## Product concept
@@ -43,7 +62,7 @@ merchant economy.
 
 | Module | What it does |
 | --- | --- |
-| **Dashboard** | Today's sales, profit, debt, stock alerts, credit readiness, and risk alerts at a glance, plus an AI insight card. |
+| **Dashboard** | A premium merchant workspace: hero banner with credit readiness, quick actions (record sale, new debt, scan QR, view report), the six at-a-glance metrics, an AI insight card, and recent transactions. |
 | **Smart Ledger** | Records every cash, transfer, POS, and QR payment as a trusted business record, filterable by method. |
 | **Debt Book** | Tracks who owes the merchant, since when, and follow-up status with simple risk levels. |
 | **Fraud Shield** | A suspicious-payment log and a fraud-awareness checklist — guidance, not bank verification. |
