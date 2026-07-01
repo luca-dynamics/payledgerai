@@ -2,7 +2,7 @@ import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
 import AppBanner from '../components/AppBanner'
 import { debtors } from '../data/mockData'
-import { formatNaira } from '../utils/format'
+import { formatNaira, formatNairaShort } from '../utils/format'
 
 const riskLabel: Record<string, string> = {
   low: 'Low risk',
@@ -19,6 +19,7 @@ export default function Debt() {
         eyebrow="Debt Book"
         title="Who owes you"
         subtitle="Track customers buying on credit and follow up before small debts become bad debts."
+        highlight={{ label: 'Outstanding', value: formatNairaShort(total) }}
       />
 
       <Disclaimer />

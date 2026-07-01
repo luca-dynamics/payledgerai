@@ -3,9 +3,9 @@ import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
 import AppBanner from '../components/AppBanner'
 import TransactionItem from '../components/TransactionItem'
-import { transactions } from '../data/mockData'
+import { stats, transactions } from '../data/mockData'
 import type { PaymentMethod } from '../types'
-import { formatNaira } from '../utils/format'
+import { formatNaira, formatNairaShort } from '../utils/format'
 
 type Filter = 'All' | PaymentMethod
 
@@ -33,6 +33,7 @@ export default function Ledger() {
         eyebrow="Smart Ledger"
         title="Business memory"
         subtitle="Every cash, transfer, POS and QR payment, recorded after it lands — your trusted sales history."
+        highlight={{ label: 'Today', value: formatNairaShort(stats.todaysSales) }}
       />
 
       <Disclaimer />

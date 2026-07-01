@@ -3,7 +3,7 @@ import Disclaimer from '../components/Disclaimer'
 import MethodTag from '../components/MethodTag'
 import Section from '../components/Section'
 import AppBanner from '../components/AppBanner'
-import { fraudChecklist, fraudFlags } from '../data/mockData'
+import { fraudChecklist, fraudFlags, stats } from '../data/mockData'
 
 const levelLabel: Record<string, string> = {
   low: 'Low',
@@ -27,6 +27,7 @@ export default function Fraud() {
         eyebrow="Fraud Shield"
         title="Fraud-risk guidance"
         subtitle="Fraud-risk guidance, not bank verification. Spot suspicious payments early and avoid disputes."
+        highlight={{ label: 'Open alerts', value: String(stats.riskAlerts) }}
       />
 
       <Disclaimer />

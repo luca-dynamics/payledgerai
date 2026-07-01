@@ -23,6 +23,20 @@ const modules = [
   { name: 'Credit Readiness', desc: 'Clean records that build credit-readiness.', glyph: '★' },
 ]
 
+const whyItMatters = [
+  'Many student entrepreneurs, campus vendors, POS agents and informal traders receive payments daily but lack trusted records.',
+  'PayLedger AI helps them stay organized after the payment lands.',
+  'It helps reduce payment disputes through fraud-risk guidance.',
+  'It helps merchants become more credit-ready through clean business records.',
+]
+
+const innovationFit = [
+  { tag: 'OPay fit', text: 'Supports merchants and digital payment users after transactions happen.' },
+  { tag: 'Google / Gemini fit', text: 'AI-powered business insight and merchant coaching.' },
+  { tag: '3MTT fit', text: 'Software development, AI, data analysis, UI/UX and cybersecurity awareness.' },
+  { tag: 'Student fit', text: 'Starts with campus vendors and student entrepreneurs, then scales to informal merchants.' },
+]
+
 export default function Landing() {
   return (
     <div className="landing">
@@ -143,6 +157,44 @@ export default function Landing() {
                   </span>
                   <h3>{m.name}</h3>
                   <p>{m.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="why-section">
+        <div className="container">
+          <Reveal>
+            <h2 className="block-title section-center">Why this matters</h2>
+          </Reveal>
+          <Reveal>
+            <ul className="why-list">
+              {whyItMatters.map((point, i) => (
+                <li key={i} className="why-item">
+                  <span className="why-check" aria-hidden="true">
+                    ✓
+                  </span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="fit-section">
+        <div className="container">
+          <Reveal>
+            <h2 className="block-title section-center">Innovation fit</h2>
+          </Reveal>
+          <div className="fit-grid">
+            {innovationFit.map((f, i) => (
+              <Reveal key={f.tag} delay={i * 80}>
+                <div className="fit-card">
+                  <span className="fit-tag">{f.tag}</span>
+                  <p>{f.text}</p>
                 </div>
               </Reveal>
             ))}
