@@ -22,7 +22,7 @@ export default function Dashboard() {
         eyebrow="Good afternoon"
         title={merchant.businessName}
         subtitle={merchant.businessType}
-        highlight={{ label: 'Credit readiness', value: `${stats.creditReadiness}/100` }}
+        ring={{ label: 'Credit readiness', value: stats.creditReadiness }}
       />
 
       <QuickActions />

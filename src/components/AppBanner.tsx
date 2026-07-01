@@ -5,13 +5,18 @@ interface AppBannerProps {
   eyebrow: string
   title: string
   subtitle?: string
-  /** Optional highlight metric shown on the right (e.g. credit readiness). */
+  /** Optional highlight metric shown on the right (e.g. today's sales). */
   highlight?: { label: string; value: string }
+  /** Optional circular score ring shown on the right (e.g. credit readiness). */
+  ring?: { label: string; value: number; max?: number }
   /** Show the merchant avatar (dashboard). */
   showAvatar?: boolean
   /** 'hero' = tall dashboard banner, 'slim' = compact page header. */
   variant?: 'hero' | 'slim'
 }
+
+const RING_R = 28
+const RING_C = 2 * Math.PI * RING_R
 
 // Premium in-app banner used at the top of every screen.
 // Layered gradient + decorative SVG art for a polished, product-grade header.
@@ -20,9 +25,11 @@ export default function AppBanner({
   title,
   subtitle,
   highlight,
+  ring,
   showAvatar = false,
   variant = 'slim',
 }: AppBannerProps) {
+  const ringDash = ring ? (ring.value / (ring.max ?? 100)) * RING_C : 0
   return (
     <header className={'banner banner-' + variant}>
       <svg className="banner-art" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">
@@ -56,8 +63,25 @@ export default function AppBanner({
         </div>
 
         <div className="banner-actions">
-          <ThemeToggle />
-          {highlight ? (
+          {ring ? (
+            <div className="banner-ring" title={`${ring.label} ${ring.value}/${ring.max ?? 100}`}>
+              <span className="ring-wrap">
+                <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+                  <circle className="br-track" cx="32" cy="32" r={RING_R} />
+                  <circle
+                    className="br-fill"
+                    cx="32"
+                    cy="32"
+                    r={RING_R}
+                    strokeDasharray={`${ringDash} ${RING_C}`}
+                    transform="rotate(-90 32 32)"
+                  />
+                </svg>
+                <span className="br-value">{ring.value}</span>
+              </span>
+              <span className="br-label">{ring.label}</span>
+            </div>
+          ) : highlight ? (
             <div className="banner-highlight">
               <span className="bh-value">{highlight.value}</span>
               <span className="bh-label">{highlight.label}</span>
@@ -70,10 +94,13 @@ export default function AppBanner({
         </div>
       </div>
 
-      <span className="banner-badge">
-        <span className="banner-badge-dot" aria-hidden="true" />
-        Prototype · no real payments
-      </span>
+      <div className="banner-foot">
+        <span className="banner-badge">
+          <span className="banner-badge-dot" aria-hidden="true" />
+          Prototype · no real payments
+        </span>
+        <ThemeToggle />
+      </div>
     </header>
   )
 }
