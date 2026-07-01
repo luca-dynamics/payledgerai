@@ -112,7 +112,21 @@ ul {
   position: relative;
 }
 
-/* ---------- App shell (mobile-app surface, centered as a device on desktop) ---------- */
+/* ---------- App shell ----------
+   Mobile-first: fills the screen. On larger screens (see the device-mockup
+   media query below) it becomes the phone's screen inside a device frame. */
+.device-stage {
+  min-height: 100vh;
+}
+
+.device-frame {
+  min-height: 100vh;
+}
+
+.device-notch {
+  display: none;
+}
+
 .app-shell {
   display: flex;
   flex-direction: column;
@@ -2070,28 +2084,75 @@ ul {
   background: var(--red-bg);
 }
 
-/* ---------- App surface: present as a device frame on desktop ---------- */
-@media (min-width: 600px) {
-  .app-shell {
-    margin-top: 28px;
-    margin-bottom: 28px;
-    min-height: calc(100vh - 56px);
-    border-radius: 32px;
+/* ---------- App surface: realistic device mockup on a fixed canvas ----------
+   On tablet/desktop the app lives inside a phone frame that is centered on a
+   soft canvas. The outer page does NOT scroll (Figma-style showcase) — only the
+   phone's screen (.app-scroll) scrolls. */
+@media (min-width: 760px) {
+  .device-stage {
+    height: 100vh;
     overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 28px 20px;
+    background:
+      radial-gradient(70% 55% at 78% 8%, rgba(34, 197, 94, 0.14), transparent 60%),
+      radial-gradient(60% 50% at 12% 92%, rgba(15, 81, 50, 0.12), transparent 60%),
+      #e6ebe8;
+  }
+
+  .device-frame {
+    position: relative;
+    width: 392px;
+    height: min(852px, calc(100vh - 56px));
+    min-height: 0;
+    padding: 13px;
+    border-radius: 54px;
+    background: linear-gradient(160deg, #10171400, #0a0f0d), #0a0f0d;
     box-shadow:
-      0 0 0 1px rgba(16, 40, 30, 0.05),
-      0 30px 80px rgba(16, 40, 30, 0.16);
+      0 0 0 2px rgba(255, 255, 255, 0.04),
+      0 2px 6px rgba(0, 0, 0, 0.6) inset,
+      0 50px 100px rgba(16, 40, 30, 0.4),
+      0 12px 30px rgba(16, 40, 30, 0.28);
+  }
+
+  .device-notch {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 128px;
+    height: 26px;
+    background: #0a0f0d;
+    border-radius: 0 0 16px 16px;
+    z-index: 30;
+  }
+
+  .app-shell {
+    height: 100%;
+    min-height: 0;
+    max-width: none;
+    margin: 0;
+    border-radius: 42px;
+    overflow: hidden;
   }
 
   .app-scroll {
-    max-height: calc(100vh - 56px);
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    padding-bottom: 12px;
   }
 
+  /* Bottom nav docks inside the phone frame instead of the viewport */
   .bottom-nav {
     position: sticky;
     bottom: 0;
     left: auto;
     transform: none;
+    width: 100%;
     max-width: 100%;
+    border-radius: 0;
   }
 }
