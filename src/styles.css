@@ -37,6 +37,79 @@
   --maxw: 430px;
 }
 
+/* ---------- Dark theme ---------- */
+[data-theme='dark'] {
+  /* greens: bright for text/accents on dark surfaces */
+  --green-800: #4ade80;
+  --green-700: #34d399;
+  --green-600: #22c55e;
+  --green-500: #22c55e;
+  --green-100: rgba(52, 211, 153, 0.18);
+  --green-50: rgba(52, 211, 153, 0.1);
+
+  --ink: #e9f1ec;
+  --ink-soft: #a2b4aa;
+  --ink-faint: #72857b;
+
+  --bg: #0a1310;
+  --surface: #111f19;
+  --surface-soft: #0d1913;
+  --line: #21322a;
+
+  --amber: #fbbf24;
+  --amber-bg: rgba(251, 191, 36, 0.16);
+  --red: #f87171;
+  --red-bg: rgba(248, 113, 113, 0.16);
+  --blue: #60a5fa;
+  --blue-bg: rgba(96, 165, 250, 0.18);
+  --violet: #a78bfa;
+  --violet-bg: rgba(167, 139, 250, 0.2);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark overrides for surfaces that use hard-coded (non-token) colours */
+[data-theme='dark'] body {
+  background:
+    radial-gradient(60% 50% at 85% 10%, rgba(34, 197, 94, 0.1), transparent 60%),
+    radial-gradient(55% 45% at 10% 90%, rgba(15, 81, 50, 0.14), transparent 60%),
+    #07100d;
+}
+
+[data-theme='dark'] .landing {
+  background:
+    radial-gradient(130% 70% at 50% -10%, #10201a 0%, #0b1712 45%, #07100d 100%);
+}
+
+[data-theme='dark'] .landing-top {
+  background: rgba(10, 19, 16, 0.82);
+}
+
+[data-theme='dark'] .landing-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+[data-theme='dark'] .bottom-nav {
+  background: rgba(13, 25, 19, 0.94);
+}
+
+/* Keep white text readable on solid-green controls in dark mode */
+[data-theme='dark'] .filter-chip.active,
+[data-theme='dark'] .method-choice.active,
+[data-theme='dark'] .mini-btn {
+  background: #157347;
+  border-color: #157347;
+  color: #fff;
+}
+
+[data-theme='dark'] .mini-btn.ghost {
+  background: var(--surface);
+  color: var(--green-700);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -113,20 +186,9 @@ ul {
 }
 
 /* ---------- App shell ----------
-   Mobile-first: fills the screen. On larger screens (see the device-mockup
-   media query below) it becomes the phone's screen inside a device frame. */
-.device-stage {
-  min-height: 100vh;
-}
-
-.device-frame {
-  min-height: 100vh;
-}
-
-.device-notch {
-  display: none;
-}
-
+   Mobile-first: fills the screen. On desktop the standalone /app route becomes
+   a centered card (see the media query below); the polished device showcase
+   lives in the landing hero (.hero-phone). */
 .app-shell {
   display: flex;
   flex-direction: column;
@@ -141,6 +203,13 @@ ul {
   flex: 1;
   overflow-y: auto;
   padding-bottom: 92px;
+  /* Hide the scrollbar so the phone screen reads like a real device */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.app-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .page {
@@ -225,7 +294,7 @@ ul {
 }
 
 .banner-hero {
-  padding: 20px 18px 16px;
+  padding: 18px 17px 15px;
 }
 
 .banner-slim {
@@ -243,9 +312,24 @@ ul {
 
 .banner-body {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
+}
+
+.banner-text {
+  min-width: 0;
+}
+
+/* Footer row: prototype badge (left) + theme toggle (right) */
+.banner-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .banner-eyebrow {
@@ -258,22 +342,22 @@ ul {
 
 .banner-title {
   margin: 4px 0 0;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 780;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.18;
 }
 
 .banner-slim .banner-title {
-  font-size: 19px;
+  font-size: 18px;
 }
 
 .banner-subtitle {
-  margin: 7px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
   color: rgba(255, 255, 255, 0.8);
-  max-width: 44ch;
+  max-width: 40ch;
 }
 
 .banner-highlight {
@@ -282,9 +366,9 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  padding: 10px 14px;
-  border-radius: 16px;
+  gap: 1px;
+  padding: 9px 12px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(4px);
@@ -292,16 +376,66 @@ ul {
 }
 
 .bh-value {
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #fff;
 }
 
 .bh-label {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+/* Circular score ring (e.g. credit readiness) */
+.banner-ring {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.ring-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+}
+
+.br-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 5.5;
+}
+
+.br-fill {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.br-value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.br-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+  white-space: nowrap;
 }
 
 .banner-avatar {
@@ -322,7 +456,6 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-top: 14px;
   padding: 6px 11px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.1);
@@ -417,6 +550,10 @@ ul {
   font-size: 13px;
   font-weight: 650;
   color: var(--green-700);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 /* ---------- Quick actions ---------- */
@@ -940,6 +1077,49 @@ ul {
 .nav-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(34, 197, 94, 0.35);
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  box-shadow: var(--shadow-soft);
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--green-700);
+  border-color: var(--green-600);
+  transform: translateY(-1px);
+}
+
+/* Toggle sitting on the dark green app banner */
+.banner-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.banner .theme-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: none;
+}
+
+.banner .theme-toggle:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .brand {
@@ -1515,19 +1695,15 @@ ul {
 
   .hero-inner {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: minmax(0, 1fr) 312px;
     align-items: center;
     gap: 40px;
-    padding-top: 64px;
+    padding-top: 48px;
     padding-bottom: 24px;
   }
 
   .hero-visual {
     display: block;
-  }
-
-  .phone {
-    width: 320px;
   }
 
   .hero-tag {
@@ -2084,75 +2260,375 @@ ul {
   background: var(--red-bg);
 }
 
-/* ---------- App surface: realistic device mockup on a fixed canvas ----------
-   On tablet/desktop the app lives inside a phone frame that is centered on a
-   soft canvas. The outer page does NOT scroll (Figma-style showcase) — only the
-   phone's screen (.app-scroll) scrolls. */
-@media (min-width: 760px) {
-  .device-stage {
-    height: 100vh;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    padding: 28px 20px;
-    background:
-      radial-gradient(70% 55% at 78% 8%, rgba(34, 197, 94, 0.14), transparent 60%),
-      radial-gradient(60% 50% at 12% 92%, rgba(15, 81, 50, 0.12), transparent 60%),
-      #e6ebe8;
-  }
+/* ---------- Hero phone: the live app inside a realistic device frame ----------
+   Rendered in the landing hero (desktop). A fixed-size frame — no viewport
+   scaling — so the app never compresses; only the phone's screen scrolls. */
+/* Visual footprint (the phone is rendered larger then scaled into this box, so
+   the app content stays comfortable/organized while the mockup stays compact). */
+.hero-phone-scale {
+  width: 288px;
+  height: 585px;
+  margin: 0 auto;
+}
 
-  .device-frame {
-    position: relative;
-    width: 392px;
-    height: min(852px, calc(100vh - 56px));
-    min-height: 0;
-    padding: 13px;
-    border-radius: 54px;
-    background: linear-gradient(160deg, #10171400, #0a0f0d), #0a0f0d;
-    box-shadow:
-      0 0 0 2px rgba(255, 255, 255, 0.04),
-      0 2px 6px rgba(0, 0, 0, 0.6) inset,
-      0 50px 100px rgba(16, 40, 30, 0.4),
-      0 12px 30px rgba(16, 40, 30, 0.28);
-  }
+.hero-phone {
+  position: relative;
+  width: 400px;
+  height: 812px;
+  padding: 12px;
+  border-radius: 50px;
+  background: #0b0f0e;
+  transform: scale(0.72);
+  transform-origin: top left;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 50px 100px rgba(16, 40, 30, 0.42),
+    0 14px 34px rgba(16, 40, 30, 0.3);
+}
 
-  .device-notch {
-    display: block;
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 128px;
-    height: 26px;
-    background: #0a0f0d;
-    border-radius: 0 0 16px 16px;
-    z-index: 30;
-  }
+.hero-phone-notch {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 22px;
+  background: rgba(5, 7, 6, 0.92);
+  border-radius: 999px;
+  z-index: 30;
+}
 
+.hero-phone-screen {
+  height: 100%;
+  border-radius: 40px;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+}
+
+.hero-phone-screen .app-shell {
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.hero-phone-screen .app-scroll {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  padding-bottom: 14px;
+  overscroll-behavior: contain;
+}
+
+/* Bottom nav docks at the base of the phone screen (not the viewport) */
+.hero-phone-screen .bottom-nav {
+  position: sticky;
+  bottom: 0;
+  left: auto;
+  transform: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ---------- Standalone /app route: clean centered card on desktop ---------- */
+@media (min-width: 600px) {
   .app-shell {
-    height: 100%;
-    min-height: 0;
-    max-width: none;
-    margin: 0;
-    border-radius: 42px;
+    max-width: 440px;
+    margin: 26px auto;
+    min-height: calc(100vh - 52px);
+    border-radius: 30px;
     overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(16, 40, 30, 0.05),
+      0 26px 70px rgba(16, 40, 30, 0.16);
   }
 
   .app-scroll {
-    flex: 1;
-    min-height: 0;
-    max-height: none;
-    padding-bottom: 12px;
+    max-height: calc(100vh - 52px);
   }
 
-  /* Bottom nav docks inside the phone frame instead of the viewport */
   .bottom-nav {
     position: sticky;
     bottom: 0;
     left: auto;
     transform: none;
-    width: 100%;
     max-width: 100%;
-    border-radius: 0;
   }
+}
+
+/* ---------- Toasts ---------- */
+.toast-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  pointer-events: none;
+  z-index: 60;
+}
+
+.toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  background: #101f18;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  animation: toast-in 0.25s ease;
+}
+
+.toast-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-500);
+  flex-shrink: 0;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Bottom sheet ---------- */
+.sheet-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 20, 15, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-end;
+  z-index: 70;
+  animation: fade 0.2s ease;
+}
+
+.sheet {
+  width: 100%;
+  background: var(--surface);
+  border-radius: 24px 24px 0 0;
+  padding: 10px 18px 20px;
+  box-shadow: 0 -12px 40px rgba(16, 40, 30, 0.22);
+  animation: sheet-up 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  max-height: 94%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.sheet::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.sheet-grab {
+  display: block;
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  margin: 4px auto 12px;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.sheet-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.sheet-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.input {
+  width: 100%;
+  padding: 12px 13px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--green-600);
+}
+
+.input-amount {
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.method-choices {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.method-choice {
+  padding: 10px 4px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 650;
+}
+
+.method-choice.active {
+  background: var(--green-700);
+  border-color: var(--green-700);
+  color: #fff;
+}
+
+.sheet-submit {
+  margin-top: 2px;
+  padding: 14px;
+  border-radius: 13px;
+  border: none;
+  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  color: #04231a;
+  font-size: 14.5px;
+  font-weight: 750;
+  box-shadow: 0 10px 24px rgba(34, 197, 94, 0.3);
+}
+
+.sheet-submit:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.sheet-note {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.qr-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.qr-frame {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  display: grid;
+  place-items: center;
+  color: var(--green-700);
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.qr-scan-line {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: var(--green-500);
+  box-shadow: 0 0 12px var(--green-500);
+  animation: qr-scan 2.2s ease-in-out infinite;
+}
+
+@keyframes qr-scan {
+  0%,
+  100% {
+    top: 16px;
+  }
+  50% {
+    top: 150px;
+  }
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 11px;
+}
+
+.empty-check {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--green-100);
+  color: var(--green-700);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink-soft);
 }

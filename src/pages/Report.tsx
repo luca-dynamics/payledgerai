@@ -20,7 +20,7 @@ export default function Report() {
         eyebrow="Credit Readiness"
         title="Report, not approval"
         subtitle="A credit-readiness report built from clean business records — not a loan approval or bank decision."
-        highlight={{ label: 'Readiness', value: `${stats.creditReadiness}/100` }}
+        ring={{ label: 'Readiness', value: stats.creditReadiness }}
       />
 
       <Disclaimer />

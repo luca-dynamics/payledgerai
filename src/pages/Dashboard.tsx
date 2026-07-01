@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import AIInsightCard from '../components/AIInsightCard'
 import AppBanner from '../components/AppBanner'
 import Disclaimer from '../components/Disclaimer'
@@ -6,10 +5,14 @@ import QuickActions from '../components/QuickActions'
 import Section from '../components/Section'
 import StatCard from '../components/StatCard'
 import TransactionItem from '../components/TransactionItem'
-import { aiInsight, merchant, stats, transactions } from '../data/mockData'
+import { useTabNav } from '../components/tabNav'
+import { aiInsight, merchant, stats } from '../data/mockData'
+import { useApp } from '../store'
 import { formatNaira } from '../utils/format'
 
 export default function Dashboard() {
+  const { go } = useTabNav()
+  const { transactions, debtors, todaysSales, outstandingDebt } = useApp()
   const recent = transactions.slice(0, 4)
 
   return (
@@ -18,8 +21,8 @@ export default function Dashboard() {
         variant="hero"
         eyebrow="Good afternoon"
         title={merchant.businessName}
-        subtitle={`${merchant.businessType} · ${merchant.targetUserType}`}
-        highlight={{ label: 'Credit readiness', value: `${stats.creditReadiness}/100` }}
+        subtitle={merchant.businessType}
+        ring={{ label: 'Credit readiness', value: stats.creditReadiness }}
       />
 
       <QuickActions />
@@ -28,7 +31,7 @@ export default function Dashboard() {
         <div className="stat-grid">
           <StatCard
             label="Today's Sales"
-            value={formatNaira(stats.todaysSales)}
+            value={formatNaira(todaysSales)}
             hint="Across cash, transfer, POS & QR"
             tone="brand"
           />
@@ -40,8 +43,8 @@ export default function Dashboard() {
           />
           <StatCard
             label="Outstanding Debt"
-            value={formatNaira(stats.outstandingDebt)}
-            hint="3 customers owing"
+            value={formatNaira(outstandingDebt)}
+            hint={`${debtors.length} customers owing`}
             tone="warning"
           />
           <StatCard
@@ -71,9 +74,9 @@ export default function Dashboard() {
         title="Recent transactions"
         subtitle="Cash · Transfer · POS · QR"
         action={
-          <Link to="/ledger" className="link-action">
+          <button type="button" className="link-action" onClick={() => go('ledger')}>
             See all →
-          </Link>
+          </button>
         }
       >
         <ul className="txn-list">

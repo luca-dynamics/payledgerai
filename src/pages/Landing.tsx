@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
+import AppDemo from '../components/AppDemo'
 import Disclaimer from '../components/Disclaimer'
-import PhonePreview from '../components/PhonePreview'
+import Logo from '../components/Logo'
 import Reveal from '../components/Reveal'
+import ThemeToggle from '../components/ThemeToggle'
 
 const audiences = [
   'Campus food vendors',
@@ -46,13 +48,12 @@ export default function Landing() {
       <header className="landing-top">
         <div className="nav-inner">
           <span className="brand">
-            <span className="brand-mark" aria-hidden="true">
-              ₦
-            </span>
+            <Logo size={30} />
             PayLedger&nbsp;AI
           </span>
           <div className="nav-right">
             <Disclaimer variant="pill" />
+            <ThemeToggle />
             <Link to="/app" className="nav-cta">
               Open app
             </Link>
@@ -109,7 +110,7 @@ export default function Landing() {
           </div>
 
           <Reveal delay={200} className="hero-visual">
-            <PhonePreview />
+            <AppDemo />
           </Reveal>
         </div>
       </section>

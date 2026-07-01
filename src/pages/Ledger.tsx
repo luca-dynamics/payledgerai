@@ -3,7 +3,7 @@ import Disclaimer from '../components/Disclaimer'
 import Section from '../components/Section'
 import AppBanner from '../components/AppBanner'
 import TransactionItem from '../components/TransactionItem'
-import { stats, transactions } from '../data/mockData'
+import { useApp } from '../store'
 import type { PaymentMethod } from '../types'
 import { formatNaira, formatNairaShort } from '../utils/format'
 
@@ -12,6 +12,7 @@ type Filter = 'All' | PaymentMethod
 const filters: Filter[] = ['All', 'Cash', 'Transfer', 'POS', 'QR']
 
 export default function Ledger() {
+  const { transactions, todaysSales } = useApp()
   const [active, setActive] = useState<Filter>('All')
 
   const filtered = useMemo(
@@ -19,7 +20,7 @@ export default function Ledger() {
       active === 'All'
         ? transactions
         : transactions.filter((t) => t.method === active),
-    [active],
+    [active, transactions],
   )
 
   const total = useMemo(
@@ -33,7 +34,7 @@ export default function Ledger() {
         eyebrow="Smart Ledger"
         title="Business memory"
         subtitle="Every cash, transfer, POS and QR payment, recorded after it lands — your trusted sales history."
-        highlight={{ label: 'Today', value: formatNairaShort(stats.todaysSales) }}
+        highlight={{ label: 'Today', value: formatNairaShort(todaysSales) }}
       />
 
       <Disclaimer />
