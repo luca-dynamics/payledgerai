@@ -68,7 +68,7 @@ export default function AppBanner({
 
       <span className="banner-badge">
         <span className="banner-badge-dot" aria-hidden="true" />
-        Prototype · no real payments processed
+        Prototype · no real payments
       </span>
     </header>
   )

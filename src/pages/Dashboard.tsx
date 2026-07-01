@@ -18,7 +18,7 @@ export default function Dashboard() {
         variant="hero"
         eyebrow="Good afternoon"
         title={merchant.businessName}
-        subtitle={`${merchant.businessType} · ${merchant.targetUserType}`}
+        subtitle={merchant.businessType}
         highlight={{ label: 'Credit readiness', value: `${stats.creditReadiness}/100` }}
       />
 
